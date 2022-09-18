@@ -31,6 +31,7 @@ function App() {
     <div className="App">
       <BigTranscript placement="top"/>
       <PushToTalkButton placement="bottom" captureKey=" " powerOn="auto" />
+      <IntroPopup />
     </div>
   );
 }
