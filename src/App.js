@@ -31,8 +31,6 @@ function App() {
     <div className="App">
       <BigTranscript placement="top"/>
       <PushToTalkButton placement="bottom" captureKey=" " powerOn="auto" />
-      <IntroPopup />
-      <p className="openconsole">ℹ️ Open the Browser Console to see speech segment outputs</p>
     </div>
   );
 }
