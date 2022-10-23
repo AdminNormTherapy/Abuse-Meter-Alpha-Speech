@@ -16,25 +16,19 @@ import {
 
 function App() {
   const { segment } = useSpeechContext()
+  localStorage.setItem('speechly_sentence.json', JSON.stringify({}));
   useEffect(() => {
     if (segment) {
       const plainString = segment.words.filter(w => w.value).map(w => w.value).join(' ');
       console.log(plainString);
-      const d1 = new Date();
-      const time1 = d1.getTime();
       const cur1 = segment.words[segment.words.length-1];
-      const cur2 = {time1:cur1};
-      localStorage.setItem('speechly_current.json', JSON.stringify(cur2));
+      localStorage.setItem('speechly_current.json', JSON.stringify(cur1));
+      const saved1 = localStorage.getItem("speechly_sentence.json");
+      const saved2 = JSON.parse(saved1);
+      const saved3 = {...saved2, ...cur1};
+      localStorage.setItem('speechly_sentence.json', JSON.stringify(saved3));
       if (segment.isFinal) {
         console.log("✅", plainString);
-        const saved = localStorage.getItem("speechly_sentence.json");
-        const saved2 = JSON.parse(saved);
-        const d2 = new Date();
-        const time2 = d2.getTime();
-        const saved3 = plainString;
-        const saved4 = {time2:saved3}
-        const saved5 = {...saved2, ...saved4};
-        localStorage.setItem('speechly_sentence.json', JSON.stringify(saved5));
       }
     }
   }, [segment]);
