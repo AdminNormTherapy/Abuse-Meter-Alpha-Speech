@@ -28,7 +28,7 @@ function App() {
       localStorage.setItem('speechly_current.json', JSON.stringify(cur1));
       const saved1 = localStorage.getItem("speechly_sentence.json");
       const saved2 = JSON.parse(saved1);
-      if (cur1["index"] != saved2[saved2.length-1]["index"]) {
+      if (cur1?.index != saved2[saved2.length-1]?.index) {
         saved2.push(cur1);
       }
       localStorage.setItem('speechly_sentence.json', JSON.stringify(saved2));
