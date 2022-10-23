@@ -13,11 +13,11 @@ import {
 4. Open the Developer Console to see speech segement outputs.
 5. Start developing with Speechly (see https://docs.speechly.com/quick-start/)
 */
+localStorage.setItem('speechly_sentence.json', JSON.stringify([]));
 
 function App() {
   const { segment } = useSpeechContext()
   const localTime = parseInt(localStorage.getItem("SpeechlyFirstConnect"));
-  localStorage.setItem('speechly_sentence.json', JSON.stringify([]));
   useEffect(() => {
     if (segment) {
       const plainString = segment.words.filter(w => w.value).map(w => w.value).join(' ');
