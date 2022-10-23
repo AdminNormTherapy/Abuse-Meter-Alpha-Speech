@@ -16,7 +16,7 @@ import {
 
 function App() {
   const { segment } = useSpeechContext()
-  const localTime = localStorage.getItem("SpeechlyFirstConnect");
+  const localTime = parseInt(localStorage.getItem("SpeechlyFirstConnect"));
   localStorage.setItem('speechly_sentence.json', JSON.stringify([]));
   useEffect(() => {
     if (segment) {
