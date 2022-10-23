@@ -22,16 +22,19 @@ function App() {
       console.log(plainString);
       const d1 = new Date();
       const time1 = d1.getTime().toString();
-      const cur = {time1:segment.words[segment.words.length-1]};
-      localStorage.setItem('speechly_current.json', cur);
+      const cur1 = segment.words[segment.words.length-1].toString();
+      const cur2 = {time1:cur1};
+      localStorage.setItem('speechly_current.json', JSON.stringify(cur2));
       if (segment.isFinal) {
         console.log("✅", plainString);
         const saved = localStorage.getItem("speechly_sentence.json");
         const saved2 = JSON.parse(saved);
         const d2 = new Date();
         const time2 = d2.getTime().toString();
-        const saved3 = {...saved2, ...{time2:plainString}};
-        localStorage.setItem('speechly_sentence.json', saved3);
+        const saved3 = plainString.toString();
+        const saved4 = {time2:saved3}
+        const saved5 = {...saved2, ...saved4};
+        localStorage.setItem('speechly_sentence.json', JSON.stringify(saved5));
       }
     }
   }, [segment]);
