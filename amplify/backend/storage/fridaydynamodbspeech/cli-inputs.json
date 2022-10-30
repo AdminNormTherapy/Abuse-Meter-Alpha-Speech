@@ -1,0 +1,10 @@
+{
+  "resourceName": "fridaydynamodbspeech",
+  "tableName": "fridaydynamodbspeechtable",
+  "partitionKey": {
+    "fieldName": "Datetime",
+    "fieldType": "number"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}
