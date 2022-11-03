@@ -5,7 +5,7 @@ import {
   BigTranscript,
   IntroPopup
 } from "@speechly/react-ui";
-
+import axios from 'axios';
 /*
 1. Paste your App ID into index.js (get it from https://api.speechly.com/dashboard/)
 2. Run `npm start` to run the app in development mode
@@ -25,13 +25,23 @@ function App() {
       const cur1 = segment.words[segment.words.length-1];
       cur1.startTimestamp = cur1.startTimestamp + localTime;
       cur1.endTimestamp = cur1.endTimestamp + localTime;
-      localStorage.setItem('speechly_current.json', JSON.stringify(cur1));
+      const inputData = {
+         userid: 'demo-speech',
+         datetime: new Date().toISOString(),
+         datastring: JSON.stringify(cur1),
+      };
+      
+      axios.post(`https://54.227.44.180:8000/api/todos`, { inputData })
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+      })
       const saved1 = localStorage.getItem("speechly_sentence.json");
       const saved2 = JSON.parse(saved1);
       if (cur1?.index != saved2[saved2.length-1]?.index) {
         saved2.push(cur1);
       }
-      localStorage.setItem('speechly_sentence.json', JSON.stringify(saved2));
+      //localStorage.setItem('speechly_sentence.json', JSON.stringify(saved2));
       if (segment.isFinal) {
         console.log("✅", plainString);
       }
